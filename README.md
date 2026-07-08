@@ -23,4 +23,4 @@ This extension is designed for local installation via Chrome's Developer Mode.
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/neetcode-sync-checker.git](https://github.com/YOUR_USERNAME/neetcode-sync-checker.git)
+   git clone [https://github.com/colin-110/neetcode-sync-checker.git](https://github.com/colin-110/neetcode_leetcode_syncer.git)
