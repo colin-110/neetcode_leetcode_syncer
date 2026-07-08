@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "NeetCode vs LeetCode Checker",
+  "version": "1.0",
+  "description": "Finds problems marked as solved on NeetCode but not actually solved on LeetCode.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://leetcode.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

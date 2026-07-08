@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { width: 320px; padding: 15px; font-family: system-ui, sans-serif; }
+    button { 
+      padding: 10px; 
+      cursor: pointer; 
+      width: 100%; 
+      background: #4CAF50; 
+      color: white; 
+      border: none; 
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    button:hover { background: #45a049; }
+    ul { padding-left: 20px; word-wrap: break-word; }
+    li { margin-bottom: 8px; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h3>Sync Checker</h3>
+  <p style="font-size: 13px; color: #555;">Make sure you are currently on <b>neetcode.io</b> and logged into <b>leetcode.com</b> in another tab.</p>
+  <button id="checkBtn">Find Missing Problems</button>
+  <div id="status" style="margin-top: 15px; font-size: 14px; font-weight: 500;"></div>
+  <ul id="resultList"></ul>
+  <script src="popup.js"></script>
+</body>
+</html>
