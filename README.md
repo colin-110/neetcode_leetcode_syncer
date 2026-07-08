@@ -17,7 +17,7 @@ It is common for developers to track their study progress on NeetCode while subm
 
 ---
 
-## 🚀 Installation
+##  Installation
 
 This extension is designed for local installation via Chrome's Developer Mode.
 
