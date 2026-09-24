@@ -1,26 +1,83 @@
 # NeetCode ↔ LeetCode Sync Checker
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![Platform](https://img.shields.io/badge/platform-Chrome-lightgrey.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+A small Chrome extension I built for my own LeetCode practice workflow.
 
-A lightweight developer tool that synchronizes your algorithm practice progress by comparing visually completed problems on [NeetCode](https://neetcode.io/) against your actual accepted submissions via the [LeetCode](https://leetcode.com/) API.
+I use [NeetCode](https://neetcode.io/) to follow a problem list and [LeetCode](https://leetcode.com/) to actually submit solutions. The two can get out of sync, especially when I solve a problem on LeetCode but forget to mark it completed on NeetCode.
 
-##  Overview
+This extension checks my actual accepted LeetCode submissions and highlights problems that are still marked incomplete on the NeetCode page.
 
-It is common for developers to track their study progress on NeetCode while submitting their actual code on LeetCode. Over time, these two platforms can fall out of sync. This Chrome Extension acts as a localized bridge, fetching your true solved state directly from LeetCode and visually highlighting any discrepancies on the NeetCode UI.
+## What it does
 
-### Key Features
-***Seamless UI Integration:** Injects visual indicators (red dashed borders and ⚠️ icons) directly into the NeetCode DOM for missing problems.
- **Direct API Validation:** Bypasses manual entry by securely querying LeetCode's internal `/api/problems/algorithms/` endpoint using your active session authenticated cookies.
- **Privacy First:** All data processing happens entirely locally within the browser. No data is sent to external servers or third-party databases.
+- Fetches my solved-problem data from LeetCode using my existing logged-in browser session.
+- Compares that data with the completion state shown on the NeetCode page.
+- Adds a visual warning to NeetCode problems that appear unsolved there but are already accepted on LeetCode.
+- Runs locally in the browser; there is no backend or external database.
 
----
+## Why I built it
 
-##  Installation
+I did not want another study tracker.
 
-This extension is designed for local installation via Chrome's Developer Mode.
+I wanted a small tool that fixed one annoying part of my own workflow: keeping my NeetCode checklist consistent with what I had actually solved on LeetCode.
 
-1. **Clone the repository:**
+The project started as a personal utility rather than a product.
+
+## How it works
+
+At a high level:
+
+```text
+NeetCode page
+     |
+     v
+Read problem state from the page
+     |
+     +--------------------+
+                          |
+                          v
+                  Fetch LeetCode
+                  accepted problems
+                          |
+                          v
+                    Compare sets
+                          |
+                          v
+              Highlight mismatches
+```
+
+The extension currently uses LeetCode's internal `/api/problems/algorithms/` endpoint with the browser's authenticated session.
+
+## Installation
+
+This is a personal/local Chrome extension, so it is installed through Chrome's Developer Mode.
+
+1. Clone the repository:
+
    ```bash
-   git clone [https://github.com/colin-110/neetcode-sync-checker.git](https://github.com/colin-110/neetcode_leetcode_syncer.git)
+   git clone https://github.com/colin-110/neetcode_leetcode_syncer.git
+   cd neetcode_leetcode_syncer
+   ```
+
+2. Open `chrome://extensions` in Chrome.
+3. Enable **Developer mode**.
+4. Choose **Load unpacked**.
+5. Select the cloned repository directory.
+
+## Privacy
+
+The extension is intended to run locally in the browser. It does not use a backend or send progress data to a third-party service.
+
+It does rely on your existing LeetCode browser session to read your solved-problem data. The LeetCode endpoint used here is an internal endpoint and may change without notice.
+
+## Limitations
+
+This is a personal utility, not a polished Chrome Web Store product.
+
+Because it depends on NeetCode's page structure and LeetCode's internal API, changes to either site may require updates to the extension.
+
+## Tech
+
+JavaScript · Chrome Extension APIs · DOM manipulation · Fetch API
+
+## License
+
+MIT
