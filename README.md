@@ -2,15 +2,18 @@
 
 A small Chrome extension I built for my own LeetCode practice workflow.
 
-I use [NeetCode](https://neetcode.io/) to follow a problem list and [LeetCode](https://leetcode.com/) to actually submit solutions. The two can get out of sync, especially when I solve a problem on LeetCode but forget to mark it completed on NeetCode.
+I use [NeetCode](https://neetcode.io/) to follow a problem list and [LeetCode](https://leetcode.com/) to actually submit solutions. The two can get out of sync, especially when I tick a problem off on NeetCode but never got an accepted submission on LeetCode.
 
-This extension checks my actual accepted LeetCode submissions and highlights problems that are still marked incomplete on the NeetCode page.
+This extension compares my NeetCode progress against my accepted LeetCode submissions and highlights problems that are marked solved on NeetCode but not actually solved on LeetCode.
+
+![Problem marked solved on NeetCode but not on LeetCode, highlighted in red](screenshots/highlighted-problem.png)
 
 ## What it does
 
 - Fetches my solved-problem data from LeetCode using my existing logged-in browser session.
-- Compares that data with the completion state shown on the NeetCode page.
-- Adds a visual warning to NeetCode problems that appear unsolved there but are already accepted on LeetCode.
+- Reads my completed problems from NeetCode (using my NeetCode login).
+- Compares the two lists, mapping NeetCode's problem names to LeetCode's (e.g. `duplicate-integer` -> `contains-duplicate`).
+- Lists the mismatches in the popup and highlights them in red on the NeetCode page.
 - Runs locally in the browser; there is no backend or external database.
 
 ## Why I built it
@@ -29,7 +32,9 @@ At a high level:
 NeetCode page
      |
      v
-Read problem state from the page
+Read completed problems
+(NeetCode API, falls back
+ to localStorage / page)
      |
      +--------------------+
                           |
@@ -44,7 +49,9 @@ Read problem state from the page
               Highlight mismatches
 ```
 
-The extension currently uses LeetCode's internal `/api/problems/algorithms/` endpoint with the browser's authenticated session.
+The extension uses LeetCode's internal `/api/problems/algorithms/` endpoint and NeetCode's own progress endpoint, both with the browser's logged-in sessions. The popup shows a short log of what each step found, which helps when one of the sites changes.
+
+Only expanded sections on the NeetCode page can be highlighted, but the popup always lists every mismatch.
 
 ## Installation
 
